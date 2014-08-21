@@ -259,7 +259,7 @@ public class Arena {
 	    ScoreboardManager manager = Bukkit.getScoreboardManager();
 	    Scoreboard board = manager.getNewScoreboard();
 	    
-	    Objective main = board.registerNewObjective(ChatColor.RED + "OITC", "kills");
+	    Objective main = board.registerNewObjective(ChatColor.RED + "密室死斗", "杀敌数");
 	    main.setDisplaySlot(DisplaySlot.SIDEBAR);
 	    for (UUID s : getPlayers()) {
 	      if (Bukkit.getPlayer(s) != null)
@@ -306,22 +306,22 @@ public class Arena {
 	        	  setState(GameState.STARTING);
 	        	  updateSigns();
 	            if (Arena.this.counter == 30) {
-	              sendAll(ChatColor.AQUA +"" + counter + ChatColor.GRAY + " seconds until the game starts.");
+	              sendAll(ChatColor.AQUA +"" + counter + ChatColor.GRAY + " 秒后游戏将会开始.");
 	            }
 	            if (Arena.this.counter == 45) {
-	              sendAll(ChatColor.AQUA +""+ counter + ChatColor.GRAY + " seconds until the game starts.");
+	              sendAll(ChatColor.AQUA +""+ counter + ChatColor.GRAY + " 秒后游戏将会开始.");
 	            }
 	            if (Arena.this.counter == 15) {
-	              sendAll(ChatColor.AQUA +""+ counter + ChatColor.GRAY + " seconds until the game starts.");
+	              sendAll(ChatColor.AQUA +""+ counter + ChatColor.GRAY + " 秒后游戏将会开始.");
 	            }
 	            if (Arena.this.counter <= 10) {
-	              sendAll(ChatColor.AQUA +""+ counter + ChatColor.GRAY + " seconds until the game starts.");
+	              sendAll(ChatColor.AQUA +""+ counter + ChatColor.GRAY + " 秒后游戏将会开始.");
 	            }
 	            Arena.this.counter -= 1;
 	          }
 	          else
 	          {
-	            Arena.this.sendAll(ChatColor.AQUA + "The game has started!");
+	            Arena.this.sendAll(ChatColor.AQUA + "游戏开始!");
 	            setState(GameState.INGAME);
 	            Arena.this.startGameTimer();
 	            Arena.this.healAll();
@@ -364,14 +364,14 @@ public class Arena {
 	        if (Methods.getLobby() != null) {
 	          player.teleport(Methods.getLobby());
 	        } else {
-	          player.sendMessage(ChatColor.RED + "Error: It seems the Main Lobby has not been setup yet, please tell your server owner ASAP.");
+	          player.sendMessage(ChatColor.RED + "错误: 看起来游戏大厅并未被设定, 请咨询服务器管理员.");
 	        }
 	       
 	        player.setScoreboard(Bukkit.getScoreboardManager().getMainScoreboard());
 	        loadInventory(player);
 	 	    player.teleport(Methods.getLobby());
-	 	    player.sendMessage(ChatColor.GREEN + "We hope you had fun :)");
-	 	    OITC.sendMessage(player, "You have been teleported back to the Main Lobby.");
+	 	    player.sendMessage(ChatColor.GREEN + "希望你能玩的开心 :)");
+	 	    OITC.sendMessage(player, "你已被传送回游戏大厅.");
 	        Arenas.removeArena(player);	      }
 	    }
 	    
@@ -398,7 +398,7 @@ public class Arena {
 	    {
 	      public void run()
 	      {
-	        Arena.this.sendAll(ChatColor.GRAY + "The time limit has been reached!");
+	        Arena.this.sendAll(ChatColor.GRAY + "时间限制已达到!");
 	        Arena.this.stop();
 	      }
 	    }, this.plugin.getConfig().getInt(getName() + ".EndTime") * 20);
@@ -423,16 +423,16 @@ public class Arena {
 	        
 	       
 	        if (getState() == GameState.INGAME) {
-	          sign.setLine(2, ChatColor.DARK_RED + "Ingame");
+	          sign.setLine(2, ChatColor.DARK_RED + "正在游戏中");
 	        } else {
 	        	if(getState() == GameState.LOBBY){
-	          sign.setLine(2, ChatColor.GREEN + "Waiting");
+	          sign.setLine(2, ChatColor.GREEN + "等待玩家中");
 	        	}else{
 	        		if(getState() == GameState.STOPPING){
-	      	          sign.setLine(2, ChatColor.RED + "Stopping");
+	      	          sign.setLine(2, ChatColor.RED + "正在停止中");
 	        		}else{
 	        			if(getState() == GameState.STARTING){
-	        		          sign.setLine(2, ChatColor.AQUA + "Starting");
+	        		          sign.setLine(2, ChatColor.AQUA + "正在开始中");
 	        			}
 	        		}
 	        	}
@@ -550,7 +550,7 @@ public class Arena {
 	    {
 	      players.add(player.getUniqueId());
 	      Arenas.addArena(player, this);
-	      sendAll(ChatColor.AQUA + player.getName() + ChatColor.GRAY + " Has joined.");
+	      sendAll(ChatColor.AQUA + player.getName() + ChatColor.GRAY + " 已经加入游戏.");
 	      
 	      saveInventory(player);
 	      
@@ -572,7 +572,7 @@ public class Arena {
 	      if(loc != null){
 	      player.teleport(loc);
 	      }else{
-	    	  OITC.sendMessage(player, "Oops, It seems there is no lobby setup for this arena yet! Please contact your server admins.");
+	    	  OITC.sendMessage(player, "错误: 看起来游戏大厅并未被设定, 请咨询服务器管理员.");
 	      }
 	      
 	      if(canStart()){
@@ -594,18 +594,18 @@ public class Arena {
 	    
 	    loadInventory(player);
 	    if(reason == LeaveReason.QUIT){
-	    sendAll(ChatColor.RED + player.getName() + ChatColor.GRAY + " Has quit.");
+	    sendAll(ChatColor.RED + player.getName() + ChatColor.GRAY + " 已经退出.");
 	    }
 	    
 	    if(reason == LeaveReason.KICK){
-		    sendAll(ChatColor.RED + player.getName() + ChatColor.GRAY + " Has been kicked.");
+		    sendAll(ChatColor.RED + player.getName() + ChatColor.GRAY + " 被踢出了这个场地.");
 	    }
 	    if(reason == LeaveReason.DEATHS){
-		    sendAll(ChatColor.RED + player.getName() + ChatColor.GRAY + " is eliminated!");
+		    sendAll(ChatColor.RED + player.getName() + ChatColor.GRAY + " 被歼灭了!");
 	    }
 	    
 	    if(reason == LeaveReason.STOPPED){
-	    	player.sendMessage(ChatColor.GREEN + "We hope you had fun :)");
+	    	player.sendMessage(ChatColor.GREEN + "希望你能玩的开心 :)");
 	    }
 	    
 	    player.setScoreboard(Bukkit.getScoreboardManager().getMainScoreboard());
@@ -616,7 +616,7 @@ public class Arena {
 	    }
 	  
 	    player.teleport(Methods.getLobby());
-	    OITC.sendMessage(player, "You have been teleported back to the Main Lobby.");
+	    OITC.sendMessage(player, "你已被传送回游戏大厅.");
 	    updateSigns();
 	    
 	    
