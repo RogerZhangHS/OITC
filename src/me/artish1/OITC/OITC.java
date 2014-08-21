@@ -46,8 +46,8 @@ public class OITC extends JavaPlugin {
 	public void onEnable() {
 		
 		//LOADING CONFIG FILES ****************************
-	    System.out.println("Loading YML files!");
-
+	    System.out.println("正在加载YML文件!");
+	    System.out.println("密室死斗(OITC)插件, TeamTF搬运/汉化!");
 	    this.playersFile = new File(getDataFolder(), "players.yml");
 	    this.arenasFile = new File(getDataFolder(), "arenas.yml");
 	    this.kitsFile = new File(getDataFolder(), "kits.yml");
@@ -64,7 +64,7 @@ public class OITC extends JavaPlugin {
 	    
 	    getConfig().options().copyDefaults(true);
 	    
-	    System.out.println("Loaded YML files Successfully!");
+	    System.out.println("成功加载YML文件!");
 	    //********************CONFIG FILES***********************
 	    
 	    
@@ -89,16 +89,16 @@ public class OITC extends JavaPlugin {
 	      for (String s : this.arenas.getStringList("Arenas.List"))
 	      {
 	        Arena arena = new Arena(s);
-	        this.logger.info("[OITC] Now Currently Loading The Arena: " + arena.getName());
+	        this.logger.info("[密室死斗] 正在加载场地: " + arena.getName());
 	        
 	        Arenas.addArena(arena);
 	        arena.updateSigns();
-	        this.logger.info("[OITC] The Arena: " + arena.getName() + " Has successfully loaded!");
+	        this.logger.info("[密室死斗] 场地: " + arena.getName() + " 成功加载!");
 	      }
 	    }
 	    catch (Exception e)
 	    {
-	      this.logger.info("[OITC] WARNING, FAILED TO LOAD ARENAS.");
+	      this.logger.info("[密室死斗] 加载场地失败.");
 	    }
 	    try
 	    {
@@ -125,7 +125,7 @@ public class OITC extends JavaPlugin {
 			String label, String[] args) {
 		
 		if(label.equalsIgnoreCase("oitc") && !(sender instanceof Player)){
-			sender.sendMessage("Must be a player to send OITC commands");
+			sender.sendMessage("你必须是一个在游戏内的玩家");
 		}
 		
 		if(label.equalsIgnoreCase("oitc") && sender instanceof Player){
@@ -142,24 +142,24 @@ public class OITC extends JavaPlugin {
 		          player.sendMessage("");
 		          
 
-		          player.sendMessage(ChatColor.GRAY + "--------" + ChatColor.AQUA + "OITC" + ChatColor.GRAY + "--------");
-		          player.sendMessage(ChatColor.GRAY + "Created By: " + ChatColor.RED + "Artish1");
+		          player.sendMessage(ChatColor.GRAY + "--------" + ChatColor.AQUA + "密室死斗" + ChatColor.GRAY + "--------");
+		          player.sendMessage(ChatColor.GRAY + "插件作者: " + ChatColor.RED + "Artish1" + ChatColor.GRAY + "翻译: " + ChatColor.RED + "TeamTF本地化小组");
 		          
-		          player.sendMessage(ChatColor.AQUA + "/oitc lobby" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "Teleports you to the Main Lobby");
-		          player.sendMessage(ChatColor.AQUA + "/oitc leave" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "Leaves the current arena you are in");
+		          player.sendMessage(ChatColor.AQUA + "/oitc lobby" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "将你传送至游戏大厅");
+		          player.sendMessage(ChatColor.AQUA + "/oitc leave" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "离开你目前所在的场地");
 		          if (player.hasPermission("oitc.admin"))
 		          {
-		            player.sendMessage(ChatColor.AQUA + "/oitc create [Arena]" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "Creates a new Arena");
-		            player.sendMessage(ChatColor.AQUA + "/oitc delete [Arena]" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "Deletes the Arena");
-		            player.sendMessage(ChatColor.AQUA + "/oitc addspawn [Arena]" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "Adds a spawn for the Arena");
+		            player.sendMessage(ChatColor.AQUA + "/oitc create [场地名]" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "创建一个新的场地");
+		            player.sendMessage(ChatColor.AQUA + "/oitc delete [场地名]" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "删除一个场地");
+		            player.sendMessage(ChatColor.AQUA + "/oitc addspawn [场地名]" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "为一个场地添加重生点");
 		            
-		            player.sendMessage(ChatColor.AQUA + "/oitc setmainlobby" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + " Sets the Main Lobby");
-		            player.sendMessage(ChatColor.AQUA + "/oitc setlobby [Arena]" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + " Sets the Lobby of the Arena.");
-		            player.sendMessage(ChatColor.AQUA + "/oitc stop [Arena]" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "Force stops the Arena");
-		            player.sendMessage(ChatColor.AQUA + "/oitc start [Arena]" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "Force starts the Arena");
-		            player.sendMessage(ChatColor.AQUA + "/oitc reload" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "Reloads the configs.");
-		            player.sendMessage(ChatColor.AQUA + "/oitc list" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "Lists all the Arenas.");
-		            player.sendMessage(ChatColor.AQUA + "/oitc version" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "Gives you the version of this plugin.");
+		            player.sendMessage(ChatColor.AQUA + "/oitc setmainlobby" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + " 设置游戏大厅");
+		            player.sendMessage(ChatColor.AQUA + "/oitc setlobby [场地名]" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + " 为某个场地设置单独的大厅.");
+		            player.sendMessage(ChatColor.AQUA + "/oitc stop [场地名]" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "强制停止这个场地的游戏");
+		            player.sendMessage(ChatColor.AQUA + "/oitc start [场地名]" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "强制开始这个场地的游戏");
+		            player.sendMessage(ChatColor.AQUA + "/oitc reload" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "重置所有配置文件");
+		            player.sendMessage(ChatColor.AQUA + "/oitc list" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "所有场地的列表");
+		            player.sendMessage(ChatColor.AQUA + "/oitc version" + ChatColor.DARK_GRAY + " || " + ChatColor.GRAY + "插件版本");
 
 		          }
 			}
@@ -168,7 +168,7 @@ public class OITC extends JavaPlugin {
 			if(args.length == 1){
 				if(args[0].equalsIgnoreCase("list")){
 					
-					String arenas = "List of Arenas: " + ChatColor.DARK_AQUA;
+					String arenas = "场地列表: " + ChatColor.DARK_AQUA;
 					
 					for(Arena arena : Arenas.getArenas()){
 						arenas = arenas + arena.getName() + ", ";
@@ -178,7 +178,7 @@ public class OITC extends JavaPlugin {
 				}
 				
 				if(args[0].equalsIgnoreCase("version")){
-					sendMessage(player, "You are using OITC Version " + ChatColor.RED + getDescription().getVersion());
+					sendMessage(player, "你正在使用密室死斗版本: " + ChatColor.RED + getDescription().getVersion());
 					
 				}
 				
@@ -186,7 +186,7 @@ public class OITC extends JavaPlugin {
 				if(player.hasPermission("oitc.admin")){
 					if(args[0].equalsIgnoreCase("setmainlobby")){
 						Methods.setLobby(player.getLocation());
-						sendMessage(player, "You have set the Main Lobby!");
+						sendMessage(player, "你成功设置了游戏大厅!");
 					}
 					
 					if(args[0].equalsIgnoreCase("reload")){
@@ -196,7 +196,7 @@ public class OITC extends JavaPlugin {
 							arena.updateSigns();
 						}
 						
-						sendMessage(player, "Reloaded Configs Successfully!");
+						sendMessage(player, "重置设定文件成功!");
 					}
 				
 				}
@@ -205,14 +205,14 @@ public class OITC extends JavaPlugin {
 					if(!Arenas.isInArena(player)){
 						if(Methods.getLobby() != null){
 							player.teleport(Methods.getLobby());
-							sendMessage(player, "Welcome to the " + ChatColor.DARK_AQUA + "Main Lobby!");
+							sendMessage(player, "欢迎来到 " + ChatColor.DARK_AQUA + "游戏大厅!");
 							
 						}else{
-							sendMessage(player, "Oops, it seems there is no Main Lobby setup yet! Please alert your server admins.");
+							sendMessage(player, "啊哦, 看起来你还没有设置游戏大厅噢! 请联系服务器管理员!");
 						}
 					}else{
 						Arena arena = Arenas.getArena(player);
-						sendMessage(player, "You have left your current arena and joined the lobby.");
+						sendMessage(player, "你离开了你当前的场地, 并进入了游戏大厅.");
 						arena.removePlayer(player, LeaveReason.QUIT);
 					}
 				}
@@ -222,7 +222,7 @@ public class OITC extends JavaPlugin {
 						Arena arena = Arenas.getArena(player);
 						arena.removePlayer(player, LeaveReason.QUIT);
 					}else{
-						sendMessage(player,"You are not in an Arena to leave from, But you will still be teleported back to the lobby!");
+						sendMessage(player,"你不在任何一个场地中, 但你还是会被传送至游戏大厅!");
 					}
 				}
 				
@@ -245,13 +245,13 @@ public class OITC extends JavaPlugin {
 		              Arena arena = new Arena(args[1]);
 		              Arenas.addArena(arena);
 		              Methods.addToList(arena);
-		              sendMessage(player, ChatColor.GRAY + "You have created the Arena: " + ChatColor.GOLD + arena.getName());
+		              sendMessage(player, ChatColor.GRAY + "你成功创建了场地: " + ChatColor.GOLD + arena.getName());
 		              Methods.saveYamls();
 		              saveConfig();
 		            }
 		            else
 		            {
-		            	sendMessage(player, ChatColor.RED + "That Arena already Exists!");
+		            	sendMessage(player, ChatColor.RED + "此场地已经存在!");
 		            }
 				}
 				
@@ -264,11 +264,11 @@ public class OITC extends JavaPlugin {
 		              
 		              Methods.saveYamls();
 		              saveConfig();
-		              sendMessage(player, "You have deleted " + ChatColor.DARK_RED + args[1]);
+		              sendMessage(player, "你删除了场地: " + ChatColor.DARK_RED + args[1]);
 		            }
 		            else
 		            {
-		              sendMessage(player, "Sorry, there is no such arena named " + ChatColor.RED + args[1]);
+		              sendMessage(player, "对不起, 此场地不存在 " + ChatColor.RED + args[1]);
 		            }
 				}
 				
@@ -280,11 +280,11 @@ public class OITC extends JavaPlugin {
 						
 						if(arena.getPlayers().size() >= 2){
 							arena.start();
-							sendMessage(player, "You have started the arena " + ChatColor.DARK_AQUA + arena.getName());
+							sendMessage(player, "你开启了下列场地中的游戏: " + ChatColor.DARK_AQUA + arena.getName());
 							
 						}else{
-							sendMessage(player, "Cannot start arena.");
-							sendMessage(player, "It is either ingame, stopping, or not enough players.");
+							sendMessage(player, "无法开启场地中的游戏.");
+							sendMessage(player, "游戏模式要么是在游戏中, 正在停止或者就是没有足够的玩家.");
 						}
 						
 						
@@ -297,12 +297,12 @@ public class OITC extends JavaPlugin {
 					if(Arenas.arenaExists(args[1])){
 							
 						Arena arena = Arenas.getArena(args[1]);
-						arena.sendAll(ChatColor.RED + player.getName() + ChatColor.GRAY + " Has stopped the Arena!");	
+						arena.sendAll(ChatColor.RED + player.getName() + ChatColor.GRAY + " 停止了场地中的游戏!");	
 						arena.stop();
 						
 						
 					}else{
-						sendMessage(player, "Sorry, there is no such arena named " + ChatColor.RED + args[1]);
+						sendMessage(player, "对不起, 没有这个名字的场地: " + ChatColor.RED + args[1]);
 					}
 				}
 				
@@ -310,10 +310,10 @@ public class OITC extends JavaPlugin {
 					if(Arenas.arenaExists(args[1])){
 						Arena arena = Arenas.getArena(args[1]);
 						arena.addSpawn(player.getLocation()); 
-						sendMessage(player, "You have added a spawn for " + ChatColor.DARK_AQUA + arena.getName());
+						sendMessage(player, "你为下列场地增加了一个重生点: " + ChatColor.DARK_AQUA + arena.getName());
 						
 					}else{
-						sendMessage(player, "Sorry, there is no such arena named " + ChatColor.RED + args[1]);
+						sendMessage(player, "对不起, 没有这个名字的场地: " + ChatColor.RED + args[1]);
 					}
 				}
 				
@@ -321,9 +321,9 @@ public class OITC extends JavaPlugin {
 					if(Arenas.arenaExists(args[1])){
 						Arena arena = Arenas.getArena(args[1]);
 						arena.setLobbySpawn(player.getLocation()); 
-						sendMessage(player, "You have set the lobby spawn for " + ChatColor.DARK_AQUA + arena.getName());
+						sendMessage(player, "你为下列场地设置了大厅的重生点: " + ChatColor.DARK_AQUA + arena.getName());
 					}else{
-						sendMessage(player, "Sorry, there is no such arena named " + ChatColor.RED + args[1]);
+						sendMessage(player, "对不起, 没有这个名字的场地: " + ChatColor.RED + args[1]);
 					}
 				}
 				
@@ -346,7 +346,7 @@ public class OITC extends JavaPlugin {
 	
 	 public static void sendMessage(Player player, String Message)
 	  {
-	    player.sendMessage(ChatColor.GRAY + "[" + ChatColor.AQUA + "OITC" + ChatColor.GRAY + "] " + ChatColor.GRAY + Message);
+	    player.sendMessage(ChatColor.GRAY + "[" + ChatColor.AQUA + "密室死斗" + ChatColor.GRAY + "] " + ChatColor.GRAY + Message);
 	  }
 	
 }
