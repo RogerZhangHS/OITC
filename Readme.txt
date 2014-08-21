@@ -1,3 +1,3 @@
-OITC (One in the Chamber)
-
-URL: http://dev.bukkit.org/bukkit-plugins/one-chamber/
+密室死斗 (One in the Chamber)
+翻译(Translation):TeamTF.Localization
+原帖URL: http://dev.bukkit.org/bukkit-plugins/one-chamber/
