@@ -204,13 +204,13 @@ public class GameListener implements Listener{
 			arena.sendAll("");
 			arena.sendAll("");
 
-			arena.sendAll(ChatColor.GREEN +"================" + ChatColor.GRAY + "[" + ChatColor.AQUA + "OITC" + ChatColor.GRAY + "]" +ChatColor.GREEN +  "================");
+			arena.sendAll(ChatColor.GREEN +"================" + ChatColor.GRAY + "[" + ChatColor.AQUA + "密室死斗" + ChatColor.GRAY + "]" +ChatColor.GREEN +  "================");
 
 
 			arena.sendAll(ChatColor.RED + killer.getName() + ChatColor.GRAY +
 					" 已经达到了这场比赛的胜利击杀数 " + ChatColor.GOLD + arena.getKillsToWin() + ChatColor.GRAY + 
 					" 他在以下场地中的战斗取得了胜利: " + ChatColor.AQUA + arena.getName());
-			arena.sendAll(ChatColor.GREEN +"================" + ChatColor.GRAY + "[" + ChatColor.AQUA + "OITC" + ChatColor.GRAY + "]" +ChatColor.GREEN +  "================");
+			arena.sendAll(ChatColor.GREEN +"================" + ChatColor.GRAY + "[" + ChatColor.AQUA + "密室死斗" + ChatColor.GRAY + "]" +ChatColor.GREEN +  "================");
 			
 			arena.sendAll("");
 			arena.sendAll("");
