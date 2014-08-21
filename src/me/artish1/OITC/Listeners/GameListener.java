@@ -181,8 +181,8 @@ public class GameListener implements Listener{
 	
 	public void onPlayerKill(Player killer, Player player){
 		Arena arena = Arenas.getArena(killer);
-		killer.sendMessage(ChatColor.GRAY + "You have killed " + ChatColor.AQUA + player.getName());
-		player.sendMessage(ChatColor.DARK_RED + killer.getName() + ChatColor.GRAY + " Has killed you!");
+		killer.sendMessage(ChatColor.GRAY + "你杀死了 " + ChatColor.AQUA + player.getName());
+		player.sendMessage(ChatColor.DARK_RED + killer.getName() + ChatColor.GRAY + " 击杀了你!");
 		
 		Methods.addArrow(killer);
 		
@@ -208,8 +208,8 @@ public class GameListener implements Listener{
 
 
 			arena.sendAll(ChatColor.RED + killer.getName() + ChatColor.GRAY +
-					" Has reached the kill goal of " + ChatColor.GOLD + arena.getKillsToWin() + ChatColor.GRAY + 
-					" and has won in the Arena: " + ChatColor.AQUA + arena.getName());
+					" 已经达到了这场比赛的胜利击杀数 " + ChatColor.GOLD + arena.getKillsToWin() + ChatColor.GRAY + 
+					" 他在以下场地中的战斗取得了胜利: " + ChatColor.AQUA + arena.getName());
 			arena.sendAll(ChatColor.GREEN +"================" + ChatColor.GRAY + "[" + ChatColor.AQUA + "OITC" + ChatColor.GRAY + "]" +ChatColor.GREEN +  "================");
 			
 			arena.sendAll("");
@@ -239,8 +239,8 @@ public class GameListener implements Listener{
 						!e.getMessage().equalsIgnoreCase("/oitc leave")){
 					
 					e.setCancelled(true);
-					OITC.sendMessage(player, "You cannot do any other commands besides the default /oitc commands");
-					OITC.sendMessage(player, "if you would like to leave, please do " + ChatColor.RED + "/oitc leave , OR /oitc lobby");
+					OITC.sendMessage(player, "除了默认的/oitc指令之外, 你无法使用其他任何指令");
+					OITC.sendMessage(player, "如果你想要离开, 请使用 " + ChatColor.RED + "/oitc leave , 或 /oitc lobby 指令");
 				}
 				
 				
