@@ -47,7 +47,7 @@ public class OITC extends JavaPlugin {
 		
 		//LOADING CONFIG FILES ****************************
 	    System.out.println("正在加载YML文件!");
-	    System.out.println("密室死斗(OITC)插件, TeamTF搬运/汉化!");
+	    System.out.println("密室死斗(OITC)插件, TeamTF搬运/汉化! Translated By TeamTF!");
 	    this.playersFile = new File(getDataFolder(), "players.yml");
 	    this.arenasFile = new File(getDataFolder(), "arenas.yml");
 	    this.kitsFile = new File(getDataFolder(), "kits.yml");
